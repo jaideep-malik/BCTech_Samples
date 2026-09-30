@@ -11,6 +11,8 @@ Pending teams
 -------------
 * Database deadlocks page: need to fix URL (hide) for user telemetry id (unblocked in 23.1/23.2)
 * Usage: Add user telemetry id to pageview pages and allow filters on this (when available in client telemetry)
+Url (in v24)
+https://businesscentral.dynamics-tie.com/?page=774&filter='Telemetry User ID' IS '<telemetry ID>'
 * Usage: add role dimension to page views (when available in client telemetry)
 * Usage: log search terms (opt-in) (when available in client telemetry)
 * Usage: add license type on sessions page (pending bug fix from server team)
@@ -29,18 +31,51 @@ Ideas
 * Performance: outgoing ws calls happening while session is taking database locks/in a write transactions
 * Use KQL functions for user analytics: https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/useranalytics
 * Dataset: EventStatistics table, refactor to use TenantHashQuerySnippet
-* Introduce clientInfoDim and refactor queries ClientBrowserUsageQuery, PageViewPerformanceQuery to use this
 * Business event telemetry
 
-Possible bug
+
+Possible bugs
 The "Last 7 days" and "Since Yesterday" values in "Outgoing Web Service Errors" are not calculated correctly. I filtered the dashboard to show only the last 4 days (and I know that 69 of these errors are from today) so it should show all 104 in the last 7 days and 69 in since yesterday)
 Seems like this issue has more pages, at least
 * Feature errors
 * Outgoing WS errors
 
+On Environment Inventory report: "Is Updated" and "Is Deleted" predicates needs to be updated.
+See example https://www.yammer.com/dynamicsnavdev/#/threads/show?threadId=2567423155871744
+
+
 ------------------
 vNext (implemented, coming in the next release, probably available in the beta app)
 Install beta app from: https://aka.ms/bctelemetryreportbeta
+------------------
+* Usage: new page 'Deprecated features (SOAP)'. Shows usage of SOAP on UI pages published by Microsoft
+* Errors: new query 'ClientControlAddinErrors'. Shows errors happening in client control add-ins.
+
+
+
+------------------
+2025-02-12 release
+------------------
+* Bug fixed: DAU/WAU/MAU query did not respect ago parameter
+* Bug fixed: 1d/7d count measures now work for incoming web service errors
+* Bug fixed: data load works also when a LOT of web service metadata errors are present
+ 
+
+
+------------------
+2024-02-07 release
+------------------
+* Bug fixed: missing Entra/AAD in global environment slicer
+
+
+------------------
+2024-02-04 release
+------------------
+* Dataset: Introduced ClientInfoDim and refactored queries ClientBrowserUsageQuery to use this
+
+
+------------------
+2023-12-01 release
 ------------------
 * Bug fixed: refresh error if you had query usage in the UI and also other signal on those queries
 * Errors: new page 'Per-Tenant Extension upload validation diagnostics'. Shows all diagnostics for extensions that failed to be uploaded to Business Central from the Extensions Management page.

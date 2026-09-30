@@ -24,13 +24,36 @@ Ideas
 * Usage: make 'Locations' page filter on AppDim
 * Usage: make 'Clients' page filter on AppDim
 * Usage: make 'MAT/WAT/DAT' page filter on AppDim
-* Introduce clientInfoDim and refactor queries ClientBrowserUsageQuery, PageViewPerformanceQuery to use this
 * Top level? Single view on customer page
 * Administration: Aged customers (on older versions)
+
+
+Bug reported on Twitter
+https://twitter.com/phenno1/status/1731977434034008216
+it seems that PowerBI for apps does not count apps installed as part as BC upgrade to Inventory. If I update my app manually (via Admin portal) it is counted but if app is updated automatically, together with major BC update, it is not.
+
 
 ------------------
 vNext (implemented, coming in the next release, probably available in the beta app)
 Install beta app from: https://aka.ms/bctelemetry-isv-app-beta
+------------------
+* Bug fixed: ObjectDim could not load due to duplicate entries (likely due to using UI on queries)
+
+
+------------------
+2024-04-02 release
+------------------
+* Bug fixed: LRQ page in the Performance report: fixed LRQ by environment visual
+* Dataset: Introduced ClientInfoDim and refactored queries ClientBrowserUsageQuery to use this
+* Usage: On 'Locations' page, added domain to location by environment
+* Performance: On page LRQ: added Domain to visuals
+* Performance: All pages: added Domain to global filters 
+* Administration: On page 'Extension lifecycle', added Domain to visuals
+* Administration: All pages: added Domain, Environment name/type, AAD tenant, and Partner to global filters 
+
+
+------------------
+2023-12-01 release
 ------------------
 * Dataset: new parameter "Include only these AppIds". Allows you to filter the report dataset (at refresh time) to only include certain apps.
 
